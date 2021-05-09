@@ -1,0 +1,19 @@
+body {
+  background-color: #F5FFFA;
+}
+#app {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #008080;
+  text-align: center;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+    color: #ff0000;
+   }
+   input[type="text"]::-moz-placeholder {
+    color: #ff0000;
+   }
