@@ -41,6 +41,7 @@
     <hr><div id="search-empty">Нічого не знайдено</div>
     <div id="search-table">
         <el-table
+          v-loading="loading"
           :data="tableData"
           style="width: 100%"
           height="250">
@@ -101,7 +102,8 @@
           err_storeys: '',
           err_garages: ''
         },
-      tableData: []
+      tableData: [],
+      loading: true,
     }
   },
     methods: {
@@ -151,14 +153,18 @@
       return parsed;
     },
     send_axios(dataForm){
-      document.getElementById('search-table').style.display = "none";
+      document.getElementById('search-table').style.display = "block";
+      this.tableData = [];
+      this.loading = true;
       document.getElementById('search-empty').style.display = "none";
       axios.post('api/result', dataForm)
         .then((response) => {
           if(response.data.length != 0){
           this.tableData = response.data;
+          this.loading = false;
           document.getElementById('search-table').style.display = "block";
         } else {
+            document.getElementById('search-table').style.display = "none";
             document.getElementById('search-empty').style.display = "block";
            }
         })

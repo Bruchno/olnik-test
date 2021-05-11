@@ -17,7 +17,8 @@ class FrontController extends Controller
   public function result(Request $request)
 		{
       $houses = Hous::searchHouses($request);
+      sleep(2);
       return  response()->json($houses);
 		}
-    
+
 }

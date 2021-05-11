@@ -22,7 +22,7 @@ class Hous extends Model
          $input['price_to'] != 0 ||
          $input['bathrooms'] != 0 ||
          $input['bedrooms'] != 0 ||
-         $storeys != 0 || $garages != 0){
+         $input['storeys'] != 0 || $input['garages'] != 0){
           $arr_serch = [];
           foreach ($input as $key => $value) {
             if($key == 'name' && $value != ''){

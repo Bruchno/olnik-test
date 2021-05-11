@@ -3630,6 +3630,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3651,7 +3652,8 @@ __webpack_require__.r(__webpack_exports__);
         err_storeys: '',
         err_garages: ''
       },
-      tableData: []
+      tableData: [],
+      loading: true
     };
   },
   methods: {
@@ -3710,13 +3712,17 @@ __webpack_require__.r(__webpack_exports__);
     send_axios: function send_axios(dataForm) {
       var _this = this;
 
-      document.getElementById('search-table').style.display = "none";
+      document.getElementById('search-table').style.display = "block";
+      this.tableData = [];
+      this.loading = true;
       document.getElementById('search-empty').style.display = "none";
       axios.post('api/result', dataForm).then(function (response) {
         if (response.data.length != 0) {
           _this.tableData = response.data;
+          _this.loading = false;
           document.getElementById('search-table').style.display = "block";
         } else {
+          document.getElementById('search-table').style.display = "none";
           document.getElementById('search-empty').style.display = "block";
         }
       })["catch"](function (error) {
@@ -81888,6 +81894,14 @@ var render = function() {
           _c(
             "el-table",
             {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.loading,
+                  expression: "loading"
+                }
+              ],
               staticStyle: { width: "100%" },
               attrs: { data: _vm.tableData, height: "250" }
             },
